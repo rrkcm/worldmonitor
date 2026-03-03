@@ -51,4 +51,8 @@ message PriceQuote {
   bool is_indicative = 14;
   // Time when this quote was observed, as Unix epoch milliseconds.
   int64 observed_at = 15 [(sebuf.http.int64_encoding) = INT64_ENCODING_NUMBER];
+  // Reference used during the checkout process (for follow-up actions).
+  string checkout_ref = 16;
+  // Time when this quote expires, as Unix epoch milliseconds.
+  int64 expires_at = 17 [(sebuf.http.int64_encoding) = INT64_ENCODING_NUMBER];
 }
