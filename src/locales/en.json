@@ -300,7 +300,68 @@
       "brief": "Type a country name for an intel brief",
       "layers": "Type \"military\" or \"finance\" for layer presets",
       "time": "Type \"1h\", \"24h\", or \"7d\" to filter by time",
-      "settings": "Type \"dark mode\", \"settings\", or \"fullscreen\""
+      "settings": "Type \"dark mode\", \"settings\", or \"fullscreen\"",
+      "mapExample": "iran",
+      "panelExample": "news",
+      "briefExample": "brief china",
+      "layersExample": "military layers",
+      "timeExample": "24h",
+      "settingsExample": "dark mode"
+    },
+    "keywords": {
+      "military": "military",
+      "finance": "finance",
+      "infrastructure": "infrastructure",
+      "intelligence": "intelligence",
+      "news": "news",
+      "dark": "dark",
+      "light": "light",
+      "settings": "settings",
+      "fullscreen": "fullscreen",
+      "refresh": "refresh"
+    },
+    "labels": {
+      "layers": {
+        "military": "Show military layers",
+        "finance": "Show finance layers",
+        "infra": "Show infrastructure layers",
+        "intel": "Show intelligence layers",
+        "all": "Enable all layers",
+        "none": "Hide all layers",
+        "minimal": "Minimal layers (conflicts + hotspots)"
+      },
+      "layer": {
+        "ais": "Toggle AIS vessel tracking",
+        "flights": "Toggle military flights",
+        "conflicts": "Toggle conflict zones",
+        "hotspots": "Toggle intel hotspots",
+        "protests": "Toggle protests & unrest",
+        "cables": "Toggle undersea cables",
+        "pipelines": "Toggle pipelines",
+        "nuclear": "Toggle nuclear facilities",
+        "bases": "Toggle military bases",
+        "fires": "Toggle satellite fires",
+        "weather": "Toggle weather overlay",
+        "cyber": "Toggle cyber threats",
+        "displacement": "Toggle displacement flows",
+        "climate": "Toggle climate anomalies",
+        "outages": "Toggle internet outages",
+        "tradeRoutes": "Toggle trade routes"
+      },
+      "view": {
+        "dark": "Switch to dark mode",
+        "light": "Switch to light mode",
+        "fullscreen": "Toggle fullscreen",
+        "settings": "Open settings",
+        "refresh": "Refresh all data"
+      },
+      "time": {
+        "1h": "Show events from last hour",
+        "6h": "Show events from last 6 hours",
+        "24h": "Show events from last 24 hours",
+        "48h": "Show events from last 48 hours",
+        "7d": "Show events from last 7 days"
+      }
     }
   },
   "modals": {
@@ -314,6 +375,8 @@
       "recent": "Recent Searches",
       "empty": "Search data or run commands",
       "noResults": "No results",
+      "commands": "Commands",
+      "results": "Results",
       "navigate": "navigate",
       "select": "select",
       "close": "close",
@@ -954,7 +1017,8 @@
         "tradeRoutes": "Trade Routes",
         "iranAttacks": "Iran Attacks",
         "gpsJamming": "GPS JAMMING",
-        "dayNight": "Day/Night"
+        "dayNight": "Day/Night",
+        "geopoliticalBoundaries": "Geopolitical Boundaries"
       },
       "tooltip": {
         "earthquake": "Earthquake",
@@ -1058,7 +1122,8 @@
           "techFires": "Active wildfires near tech infrastructure",
           "financeGulfInvestments": "GCC sovereign wealth fund investments and FDI",
           "tradeRoutes": "Major global shipping lanes connecting ports through strategic chokepoints",
-          "dayNight": "Real-time solar terminator showing day and night zones"
+          "dayNight": "Real-time solar terminator showing day and night zones",
+          "geoBoundaries": "Demilitarized zones, ceasefire lines, and disputed boundaries"
         },
         "notes": {
           "timeAffects": "Affects: Earthquakes, Weather, Protests, Outages"
@@ -1340,6 +1405,8 @@
       "close": "Close",
       "summarize": "Summarize this panel",
       "generatingSummary": "Generating summary...",
+      "summaryError": "Could not generate summary",
+      "summaryFailed": "Summary failed",
       "sources": "{{count}} sources",
       "relatedAssetsNear": "Related assets near {{location}}"
     },
@@ -2053,6 +2120,19 @@
       "uae_ecsr": "UAE/ECSR",
       "venezuela_crisis": "Venezuela Crisis",
       "yemen_houthis": "Yemen/Houthis"
+    },
+    "geopoliticalBoundary": {
+      "title": "GEOPOLITICAL BOUNDARY",
+      "established": "ESTABLISHED",
+      "dimensions": "DIMENSIONS",
+      "legalBasis": "LEGAL BASIS",
+      "parties": "SIGNATORIES",
+      "types": {
+        "demilitarized": "DEMILITARIZED ZONE",
+        "ceasefire": "CEASEFIRE LINE",
+        "disputed": "DISPUTED BOUNDARY",
+        "armistice": "ARMISTICE LINE"
+      }
     }
   },
   "signals": {
@@ -2235,20 +2315,5 @@
     "retry": "Retry",
     "refresh": "Refresh",
     "all": "All"
-  },
-  "layouts": {
-    "intelligenceAnalyst": "Intelligence",
-    "marketWatch": "Markets",
-    "breakingNews": "News",
-    "minimal": "Minimal",
-    "techOverview": "Tech Overview",
-    "startupInvestor": "Startups",
-    "fullMarkets": "Full Markets",
-    "cryptoFocus": "Crypto",
-    "allGoodNews": "All Good News",
-    "addWidget": "Add Widget",
-    "filterWidgets": "Filter...",
-    "modified": "modified",
-    "clickToReset": "Click to reset"
   }
 }

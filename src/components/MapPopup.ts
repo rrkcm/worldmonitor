@@ -1,4 +1,4 @@
-import type { ConflictZone, Hotspot, NewsItem, MilitaryBase, StrategicWaterway, APTGroup, NuclearFacility, EconomicCenter, GammaIrradiator, Pipeline, UnderseaCable, CableAdvisory, RepairShip, InternetOutage, AIDataCenter, AisDisruptionEvent, SocialUnrestEvent, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent, Port, Spaceport, CriticalMineralProject, CyberThreat } from '@/types';
+import type { ConflictZone, Hotspot, NewsItem, MilitaryBase, StrategicWaterway, APTGroup, NuclearFacility, EconomicCenter, GammaIrradiator, Pipeline, UnderseaCable, CableAdvisory, RepairShip, InternetOutage, AIDataCenter, AisDisruptionEvent, SocialUnrestEvent, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent, Port, Spaceport, CriticalMineralProject, CyberThreat, GeopoliticalBoundary } from '@/types';
 import type { AirportDelayAlert, PositionSample } from '@/services/aviation';
 import type { Earthquake } from '@/services/earthquakes';
 import type { WeatherAlert } from '@/services/weather';
@@ -370,6 +370,8 @@ export class MapPopup {
 
   private renderContent(data: PopupData): string {
     switch (data.type) {
+      case 'geopoliticalBoundary':
+        return this.renderGeopoliticalBoundaryPopup(data.data as GeopoliticalBoundary);
       case 'conflict':
         return this.renderConflictPopup(data.data as ConflictZone);
       case 'hotspot':
@@ -461,6 +463,55 @@ export class MapPopup {
       default:
         return '';
     }
+  }
+
+  private renderGeopoliticalBoundaryPopup(boundary: GeopoliticalBoundary): string {
+    const typeLabel = escapeHtml(t(`popups.geopoliticalBoundary.types.${boundary.boundaryType}`).toUpperCase());
+
+    return `
+      <div class="popup-header geopolitical-boundary">
+        <span class="popup-title">${escapeHtml(boundary.name.toUpperCase())}</span>
+        <span class="popup-badge ${escapeHtml(boundary.boundaryType)}">${typeLabel}</span>
+        <button class="popup-close">\u00d7</button>
+      </div>
+      <div class="popup-body">
+        <div class="popup-stats">
+          ${boundary.established ? `
+          <div class="popup-stat">
+            <span class="stat-label">${t('popups.geopoliticalBoundary.established')}</span>
+            <span class="stat-value">${escapeHtml(boundary.established)}</span>
+          </div>` : ''}
+          ${boundary.status ? `
+          <div class="popup-stat">
+            <span class="stat-label">${t('popups.status')}</span>
+            <span class="stat-value">${escapeHtml(boundary.status)}</span>
+          </div>` : ''}
+          ${boundary.dimensions ? `
+          <div class="popup-stat">
+            <span class="stat-label">${t('popups.geopoliticalBoundary.dimensions')}</span>
+            <span class="stat-value">${escapeHtml(boundary.dimensions)}</span>
+          </div>` : ''}
+          ${boundary.location ? `
+          <div class="popup-stat">
+            <span class="stat-label">${t('popups.location')}</span>
+            <span class="stat-value">${escapeHtml(boundary.location)}</span>
+          </div>` : ''}
+        </div>
+        ${boundary.description ? `<p class="popup-description">${escapeHtml(boundary.description)}</p>` : ''}
+        ${boundary.legalBasis ? `
+          <div class="popup-section">
+            <span class="section-label">${t('popups.geopoliticalBoundary.legalBasis')}</span>
+            <span class="popup-description">${escapeHtml(boundary.legalBasis)}</span>
+          </div>` : ''}
+        ${boundary.parties && boundary.parties.length > 0 ? `
+          <div class="popup-section">
+            <span class="section-label">${t('popups.geopoliticalBoundary.parties')}</span>
+            <div class="popup-tags">
+              ${boundary.parties.map(p => `<span class="popup-tag">${escapeHtml(p)}</span>`).join('')}
+            </div>
+          </div>` : ''}
+      </div>
+    `;
   }
 
   private renderConflictPopup(conflict: ConflictZone): string {
