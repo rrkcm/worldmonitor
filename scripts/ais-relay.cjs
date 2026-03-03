@@ -3437,7 +3437,7 @@ function fetchPolymarketUpstream(cacheKey, endpoint, params, tag) {
           polymarketCache.set(cacheKey, { data, timestamp: Date.now() });
           resolve(data);
         });
-        response.on('error', () => { finalize(false); resolve(null); });
+        stream.on('error', () => { finalize(false); resolve(null); });
       });
       request.on('error', (err) => {
         console.error('[Relay] Polymarket error:', err.message);
