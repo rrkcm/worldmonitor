@@ -80,7 +80,14 @@
     "noSignals": "No recent high-severity signals.",
     "assessmentUnavailable": "Assessment unavailable.",
     "noNews": "No recent country-specific coverage.",
+    "noMarkets": "No active markets for this country.",
     "noIndicators": "No country-specific indicators available.",
+    "components": {
+      "unrest": "Unrest",
+      "conflict": "Conflict",
+      "security": "Security",
+      "information": "Information"
+    },
     "nearbyPorts": "Nearby Ports",
     "detected": "Detected",
     "notDetected": "No",
@@ -651,7 +658,7 @@
     "webcams": {
       "expand": "Expand",
       "paused": "Webcams paused",
-      "pausedIdle": "Webcams paused — move mouse to resume",
+      "pausedIdle": "Webcams paused \u2014 move mouse to resume",
       "regions": {
         "iran": "IRAN ATTACKS",
         "all": "ALL",
@@ -666,7 +673,7 @@
     },
     "goodThingsDigest": {
       "noStories": "No stories available",
-      "summarizing": "Summarizing…"
+      "summarizing": "Summarizing\u2026"
     },
     "progressCharts": {
       "noData": "No progress data available"

@@ -250,6 +250,8 @@ const PROXIED_HLS_MAP: Readonly<Record<string, ProxiedHlsEntry>> = {
   'cnbc': { url: 'https://cdn-ca2-na.lncnetworks.host/hls/cnbc_live/index.m3u8', referer: 'https://livenewschat.eu/' },
 };
 
+const IDLE_ACTIVITY_EVENTS = ['mousedown', 'keydown', 'scroll', 'touchstart', 'mousemove'] as const;
+
 if (import.meta.env.DEV) {
   const allChannels = [...FULL_LIVE_CHANNELS, ...TECH_LIVE_CHANNELS, ...OPTIONAL_LIVE_CHANNELS];
   for (const id of Object.keys(DIRECT_HLS_MAP)) {
@@ -315,7 +317,7 @@ export class LiveNewsPanel extends Panel {
   private isFullscreen = false;
   private liveBtn: HTMLButtonElement | null = null;
   private idleTimeout: ReturnType<typeof setTimeout> | null = null;
-  private readonly IDLE_PAUSE_MS = IDLE_PAUSE_MS;
+  private readonly ECO_IDLE_PAUSE_MS = IDLE_PAUSE_MS;
   private boundVisibilityHandler!: () => void;
   private boundIdleResetHandler!: () => void;
   private idleDetectionEnabled = false;
@@ -519,15 +521,13 @@ export class LiveNewsPanel extends Panel {
 
 
   private applyIdleMode(): void {
-    const activityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart', 'mousemove'] as const;
-
     if (this.alwaysOn) {
       if (this.idleTimeout) {
         clearTimeout(this.idleTimeout);
         this.idleTimeout = null;
       }
       if (this.idleDetectionEnabled) {
-        activityEvents.forEach((event) => {
+        IDLE_ACTIVITY_EVENTS.forEach((event) => {
           document.removeEventListener(event, this.boundIdleResetHandler);
         });
         this.idleDetectionEnabled = false;
@@ -539,7 +539,7 @@ export class LiveNewsPanel extends Panel {
     }
 
     if (!this.idleDetectionEnabled) {
-      activityEvents.forEach((event) => {
+      IDLE_ACTIVITY_EVENTS.forEach((event) => {
         document.addEventListener(event, this.boundIdleResetHandler, { passive: true });
       });
       this.idleDetectionEnabled = true;
@@ -566,7 +566,7 @@ export class LiveNewsPanel extends Panel {
       if (this.alwaysOn) return;
       if (this.idleTimeout) clearTimeout(this.idleTimeout);
       this.resumeFromIdle();
-      this.idleTimeout = setTimeout(() => this.pauseForIdle(), this.IDLE_PAUSE_MS);
+      this.idleTimeout = setTimeout(() => this.pauseForIdle(), this.ECO_IDLE_PAUSE_MS);
     };
 
     this.applyIdleMode();
@@ -1520,7 +1520,7 @@ export class LiveNewsPanel extends Panel {
     window.removeEventListener('message', this.boundMessageHandler);
     if (this.isFullscreen) this.toggleFullscreen();
     if (this.idleDetectionEnabled) {
-      ['mousedown', 'keydown', 'scroll', 'touchstart', 'mousemove'].forEach(event => {
+      IDLE_ACTIVITY_EVENTS.forEach(event => {
         document.removeEventListener(event, this.boundIdleResetHandler);
       });
       this.idleDetectionEnabled = false;

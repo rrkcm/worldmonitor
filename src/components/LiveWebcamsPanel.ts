@@ -55,6 +55,7 @@ const MAX_GRID_CELLS = 4;
 
 // Eco mode pauses streams after inactivity to save CPU/bandwidth.
 const ECO_IDLE_PAUSE_MS = IDLE_PAUSE_MS;
+const IDLE_ACTIVITY_EVENTS = ['mousedown', 'keydown', 'scroll', 'touchstart', 'mousemove'] as const;
 
 type ViewMode = 'grid' | 'single';
 type RegionFilter = 'all' | WebcamRegion;
@@ -96,7 +97,6 @@ export class LiveWebcamsPanel extends Panel {
     this.unsubscribeStreamSettings = subscribeLiveStreamsSettingsChange((alwaysOn) => {
       this.alwaysOn = alwaysOn;
       this.applyIdleMode();
-      if (this.isVisible) this.render();
     });
     this.render();
     document.addEventListener('keydown', this.boundFullscreenEscHandler);
@@ -400,30 +400,26 @@ export class LiveWebcamsPanel extends Panel {
   }
 
   private applyIdleMode(): void {
-    // Eco Mode: enable idle timer and activity listeners.
-    // Always On: disable them completely.
-    const activityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart', 'mousemove'] as const;
-
     if (this.alwaysOn) {
       if (this.idleTimeout) {
         clearTimeout(this.idleTimeout);
         this.idleTimeout = null;
       }
       if (this.idleDetectionEnabled) {
-        activityEvents.forEach((event) => {
+        IDLE_ACTIVITY_EVENTS.forEach((event) => {
           document.removeEventListener(event, this.boundIdleResetHandler);
         });
         this.idleDetectionEnabled = false;
       }
-      // If we previously idled out, wake back up.
       if (this.isIdle && !document.hidden) {
         this.isIdle = false;
+        if (this.isVisible) this.render();
       }
       return;
     }
 
     if (!this.idleDetectionEnabled) {
-      activityEvents.forEach((event) => {
+      IDLE_ACTIVITY_EVENTS.forEach((event) => {
         document.addEventListener(event, this.boundIdleResetHandler, { passive: true });
       });
       this.idleDetectionEnabled = true;
@@ -482,7 +478,7 @@ export class LiveWebcamsPanel extends Panel {
     }
     document.removeEventListener('visibilitychange', this.boundVisibilityHandler);
     document.removeEventListener('keydown', this.boundFullscreenEscHandler);
-    ['mousedown', 'keydown', 'scroll', 'touchstart', 'mousemove'].forEach(event => {
+    IDLE_ACTIVITY_EVENTS.forEach(event => {
       document.removeEventListener(event, this.boundIdleResetHandler);
     });
     if (this.isFullscreen) this.toggleFullscreen();
