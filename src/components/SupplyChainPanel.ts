@@ -90,7 +90,7 @@ export class SupplyChainPanel extends Panel {
   }
 
   private renderChokepoints(): string {
-    if (!this.chokepointData || this.chokepointData.chokepoints.length === 0) {
+    if (!this.chokepointData || !this.chokepointData.chokepoints?.length) {
       return `<div class="economic-empty">${t('components.supplyChain.noChokepoints')}</div>`;
     }
 
@@ -121,7 +121,7 @@ export class SupplyChainPanel extends Panel {
       return `<div class="economic-empty">${t('components.supplyChain.fredKeyMissing')}</div>`;
     }
 
-    if (!this.shippingData || this.shippingData.indices.length === 0) {
+    if (!this.shippingData || !this.shippingData.indices?.length) {
       return `<div class="economic-empty">${t('components.supplyChain.noShipping')}</div>`;
     }
 
@@ -167,7 +167,7 @@ export class SupplyChainPanel extends Panel {
   }
 
   private renderMinerals(): string {
-    if (!this.mineralsData || this.mineralsData.minerals.length === 0) {
+    if (!this.mineralsData || !this.mineralsData.minerals?.length) {
       return `<div class="economic-empty">${t('components.supplyChain.noMinerals')}</div>`;
     }
 
