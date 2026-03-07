@@ -82,12 +82,12 @@ export class TradePolicyPanel extends Panel {
 
     // Only show unavailable banner when active tab has NO data and upstream is down
     const activeHasData = this.activeTab === 'restrictions'
-      ? (this.restrictionsData?.restrictions.length ?? 0) > 0
+      ? (this.restrictionsData?.restrictions?.length ?? 0) > 0
       : this.activeTab === 'tariffs'
-      ? (this.tariffsData?.datapoints.length ?? 0) > 0
+      ? (this.tariffsData?.datapoints?.length ?? 0) > 0
       : this.activeTab === 'flows'
-      ? (this.flowsData?.flows.length ?? 0) > 0
-      : (this.barriersData?.barriers.length ?? 0) > 0;
+      ? (this.flowsData?.flows?.length ?? 0) > 0
+      : (this.barriersData?.barriers?.length ?? 0) > 0;
     const activeData = this.activeTab === 'restrictions' ? this.restrictionsData
       : this.activeTab === 'tariffs' ? this.tariffsData
       : this.activeTab === 'flows' ? this.flowsData

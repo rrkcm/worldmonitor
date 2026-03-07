@@ -87,7 +87,7 @@ export class StablecoinPanel extends Panel {
     }
 
     const d = this.data;
-    if (!d.stablecoins.length) {
+    if (!d.stablecoins?.length) {
       this.setContent(`<div class="panel-empty">${t('common.noDataShort')}</div>`);
       return;
     }
