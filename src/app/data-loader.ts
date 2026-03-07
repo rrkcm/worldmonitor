@@ -1998,6 +1998,7 @@ export class DataLoaderManager implements AppModule {
     const economicPanel = this.ctx.panels['economic'] as EconomicPanel;
     try {
       const data = await fetchRecentAwards({ daysBack: 7, limit: 15 });
+      if (!data?.awards) throw new Error('No spending data returned');
       economicPanel?.updateSpending(data);
       this.ctx.statusPanel?.updateApi('USASpending', { status: data.awards.length > 0 ? 'ok' : 'error' });
       if (data.awards.length > 0) {
@@ -2016,6 +2017,7 @@ export class DataLoaderManager implements AppModule {
     const economicPanel = this.ctx.panels['economic'] as EconomicPanel;
     try {
       const data = await fetchBisData();
+      if (!data?.policyRates) throw new Error('No BIS data returned');
       economicPanel?.updateBis(data);
       const hasData = data.policyRates.length > 0;
       this.ctx.statusPanel?.updateApi('BIS', { status: hasData ? 'ok' : 'error' });
