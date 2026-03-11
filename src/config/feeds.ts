@@ -1082,6 +1082,9 @@ const HAPPY_FEEDS: Record<string, Feed[]> = {
   ],
 };
 
+// Health variant feeds (from health.ts)
+import { FEEDS as HEALTH_FEEDS } from './variants/health';
+
 // Commodity variant feeds (from commodity.ts)
 const COMMODITY_FEEDS: Record<string, Feed[]> = {
   'commodity-news': [
@@ -1175,7 +1178,9 @@ export const FEEDS = SITE_VARIANT === 'tech'
       ? HAPPY_FEEDS
       : SITE_VARIANT === 'commodity'
         ? COMMODITY_FEEDS
-        : FULL_FEEDS;
+        : SITE_VARIANT === 'health'
+          ? HEALTH_FEEDS
+          : FULL_FEEDS;
 
 export const SOURCE_REGION_MAP: Record<string, { labelKey: string; feedKeys: string[] }> = {
   // Full (geopolitical) variant regions
