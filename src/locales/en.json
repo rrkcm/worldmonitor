@@ -268,7 +268,21 @@
     "gulfEconomies": "Gulf Economies",
     "gulfIndices": "Gulf Indices",
     "gulfCurrencies": "Gulf Currencies",
-    "gulfOil": "Gulf Oil"
+    "gulfOil": "Gulf Oil",
+    "globalHealth": "Global Health News",
+    "outbreaks": "Disease Outbreaks",
+    "research": "Medical Research",
+    "vaccines": "Vaccines & Immunization",
+    "pharma": "Pharmaceuticals",
+    "mentalHealth": "Mental Health",
+    "healthPolicy": "Healthcare Policy",
+    "cancer": "Cancer Research",
+    "chronicDiseases": "Chronic Diseases",
+    "healthTech": "Health Technology",
+    "nutrition": "Nutrition & Food Safety",
+    "maternalChild": "Maternal & Child Health",
+    "aging": "Aging & Longevity",
+    "environmental": "Environmental Health"
   },
   "commands": {
     "prefixes": {
