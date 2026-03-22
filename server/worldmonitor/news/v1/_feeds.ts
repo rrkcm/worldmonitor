@@ -393,6 +393,60 @@ export const VARIANT_FEEDS: Record<string, Record<string, ServerFeed[]>> = {
       { name: 'Shareable', url: 'https://www.shareable.net/feed/' },
     ],
   },
+
+  // ── Health variant (Medical, Disease Tracking, Healthcare) ─────────────────
+  health: {
+    globalHealth: [
+      { name: 'WHO News', url: 'https://www.who.int/rss-feeds/news-english.xml' },
+      { name: 'CDC Newsroom', url: 'https://tools.cdc.gov/api/v2/resources/media/132608.rss' },
+      { name: 'STAT News', url: 'https://www.statnews.com/feed/' },
+      { name: 'Global Health Now', url: gn('("global health" OR "public health" OR WHO OR pandemic) when:2d') },
+    ],
+    outbreaks: [
+      { name: 'ProMED', url: 'https://promedmail.org/feed/' },
+      { name: 'Outbreak News', url: 'http://outbreaknewstoday.com/feed/' },
+      { name: 'Disease Surveillance', url: gn('("disease outbreak" OR epidemic OR "infectious disease" OR surveillance) when:3d') },
+    ],
+    research: [
+      { name: 'Nature Medicine', url: 'https://www.nature.com/nm.rss' },
+      { name: 'Medical Breakthroughs', url: gn('("medical breakthrough" OR "medical research" OR "clinical trial") when:3d') },
+    ],
+    vaccines: [
+      { name: 'Vaccine News', url: gn('(vaccine OR vaccination OR immunization OR mRNA) when:3d') },
+    ],
+    pharma: [
+      { name: 'BioPharma Dive', url: 'https://www.biopharmadive.com/feeds/news/' },
+      { name: 'FiercePharma', url: 'https://www.fiercepharma.com/rss/xml' },
+      { name: 'Drug Development', url: gn('("drug development" OR "FDA approval" OR pharmaceutical) when:3d') },
+    ],
+    mentalHealth: [
+      { name: 'Mental Health News', url: gn('("mental health" OR psychiatry OR "mental illness") when:3d') },
+    ],
+    healthPolicy: [
+      { name: 'Health Policy News', url: gn('("health policy" OR "healthcare reform" OR "health insurance") when:3d') },
+    ],
+    cancer: [
+      { name: 'Cancer Research', url: gn('("cancer research" OR oncology OR immunotherapy) when:3d') },
+    ],
+    chronicDiseases: [
+      { name: 'Diabetes News', url: gn('(diabetes OR "chronic disease" OR cardiovascular) when:3d') },
+    ],
+    healthTech: [
+      { name: 'MedTech News', url: gn('("medical technology" OR medtech OR "digital health") when:3d') },
+    ],
+    nutrition: [
+      { name: 'Nutrition Science', url: gn('(nutrition OR diet OR "food safety") when:3d') },
+    ],
+    maternalChild: [
+      { name: 'Maternal Health', url: gn('("maternal health" OR pediatrics OR "child health") when:3d') },
+    ],
+    aging: [
+      { name: 'Aging Research', url: gn('("aging research" OR longevity OR "Alzheimer\'s") when:3d') },
+    ],
+    environmental: [
+      { name: 'Environmental Health', url: gn('("environmental health" OR "climate health" OR pollution) when:3d') },
+    ],
+  },
 };
 
 export const INTEL_SOURCES: ServerFeed[] = [
